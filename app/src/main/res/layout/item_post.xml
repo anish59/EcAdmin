@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp8">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgPost"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/txtUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:ems="10"
+                    android:gravity="end"
+                    android:maxLength="15"
+                    android:text="Tom Hardydfdfdfdfdfdff"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/txtDisc"
+                    android:layout_alignStart="@+id/txtDisc"
+                    android:text="Street Fight"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtDisc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtTitle"
+                    android:layout_marginLeft="@dimen/dp8"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:maxLines="5"
+                    android:text="@string/the_first_attack_was_on_our_laboratory_they_questioned_the_data_analysis_our_capabilities_our_equipment_and_then_as_it_got_nastier_they_resorted_to_personalised_attacks_on_us_and_our_integrity_their_favourite_ploy_was_to_dismiss_us_as_a_pawn_in_a_conspiracy_hatched_by_europe_because_we_get_funds_from_multilateral_and_bilateral_agencies_to_destroy_the_good_name_of_us_companies_but_this_was_not_all_we_heard_rumours_of_phone_calls_from_colin_powell_then_us_secretary_of_state_to_the_prime_minister_s_office_we_heard_of_washington_dc_based_high_priced_lawyers_lobbyists_flying_down_to_cajole_the_powers_here_we_heard_of_intense_activity_in_corridors_in_which_we_have_no_place" />
+
+                <Button
+                    android:id="@+id/btnApprove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txtDisc"
+                    android:layout_margin="@dimen/dp6"
+                    android:background="@color/colorAccent"
+                    android:text="@string/approve"
+                    android:textColor="@color/colorWhite" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

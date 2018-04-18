@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,12 +31,15 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private List<Post> postList;
     private ProgressDialog progressDialog;
+    private android.widget.TextView txtEmptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.activity_main);
+        this.txtEmptyView = (TextView) findViewById(R.id.txtEmptyView);
+        this.rvPosts = (RecyclerView) findViewById(R.id.rvPosts);
 
         init();
 
@@ -42,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         progressDialog = new ProgressDialog(this);
-        this.rvPosts = (RecyclerView) findViewById(R.id.rvPosts);
         postList = new ArrayList<>();
-//        progressDialog.setMessage("Loading..");
+        progressDialog.setMessage("Loading..");
 
         initAdapter();
         callService();
@@ -68,9 +72,13 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < response.body().getData().size(); i++) {
                             if (response.body().getData().get(i).getStatus().equals("0")) {
                                 postList.add(response.body().getData().get(i));
+
                             }
                         }
                         postsAdapter.setPostAdapter(postList);
+                        setEmptyView(false);
+                    } else {
+                        setEmptyView(true);
                     }
                 }
             }
@@ -81,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(context, "Error while Processing", Toast.LENGTH_SHORT).show();
                 Log.e("failure", t.toString());
+                setEmptyView(true);
             }
         });
     }
@@ -101,8 +110,10 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful() && response.body().getStatus() == 1) {
                             Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             callService();
-                        } else {
+                        } if (response.body() != null && response.body().getMessage() != null) {
                             Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Oops there seems to be some issue, please try again later!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -120,5 +131,21 @@ public class MainActivity extends AppCompatActivity {
 
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
         rvPosts.setAdapter(postsAdapter);
+    }
+
+    private void setEmptyView(boolean isNoData) {
+        if (isNoData) {
+            txtEmptyView.setVisibility(View.VISIBLE);
+            rvPosts.setVisibility(View.GONE);
+        } else {
+            txtEmptyView.setVisibility(View.GONE);
+            rvPosts.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        callService();
     }
 }

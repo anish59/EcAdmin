@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
         holder.txtTitle.setText(postList.get(position).getTitle());
 //        holder.txtName.setText(postList.get(position).getTitle());
         Log.e("url",AppConstants.GLIDE_BASE_URL + postList.get(position).getImage());
-        Glide.with(context).load(AppConstants.GLIDE_BASE_URL + postList.get(position).getImage()).into(holder.imgPost);
+
+        Glide.with(context)
+                .load(AppConstants.GLIDE_BASE_URL + postList.get(position).getImage())
+                .apply(new RequestOptions().placeholder(R.drawable.no_image_found).error(R.drawable.no_image_found))
+                .into(holder.imgPost);
+
         holder.btnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +86,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.MyViewHolder
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            this.btnApprove = (Button) itemView.findViewById(R.id.btnApprove);
+            this.btnApprove = (Button) itemView.findViewById(R.id.btnSolved);
             this.txtDisc = (TextView) itemView.findViewById(R.id.txtDisc);
             this.txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
             this.imgPost = (ImageView) itemView.findViewById(R.id.imgPost);

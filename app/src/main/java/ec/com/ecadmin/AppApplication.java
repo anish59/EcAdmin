@@ -39,7 +39,7 @@ public class AppApplication extends Application {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(AppConstants.BaseUrl)
+                .baseUrl(AppConstants.BASE_URL)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

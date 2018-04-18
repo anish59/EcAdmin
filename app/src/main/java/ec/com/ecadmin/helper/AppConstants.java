@@ -5,7 +5,8 @@ package ec.com.ecadmin.helper;
  */
 
 public class AppConstants {
-    public static final String BaseUrl = "http://192.168.31.61/EComplain/";
-    public static final String GLIDE_BASE_URL="http://192.168.31.61/EComplain/upload/";
+    public static final String BASE_URL = "https://ishanwebmyne.000webhostapp.com/";
+    public static final String GLIDE_BASE_URL = "https://ishanwebmyne.000webhostapp.com/upload/";
+
 
 }

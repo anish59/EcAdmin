@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         setEmptyView(true);
                     }
+                }else{
+                    setEmptyView(true);
                 }
             }
 
